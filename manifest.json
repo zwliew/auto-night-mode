@@ -1,7 +1,7 @@
 {
-  "name": "YouTube Auto Night Mode",
-  "short_name": "YT Auto Night Mode",
-  "description": "Automatically turn on YouTube's night mode at night.",
+  "name": "YouTube Auto Dark Mode",
+  "short_name": "YT Auto Dark",
+  "description": "Automatically turn on YouTube's dark mode at night.",
   "manifest_version": 2,
   "version": "1.0.0",
   "background": {
