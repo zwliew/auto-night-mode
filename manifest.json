@@ -10,7 +10,6 @@
   },
   "permissions": [
     "cookies",
-    "webNavigation",
     "alarms",
     "*://*.youtube.com/*"
   ]
