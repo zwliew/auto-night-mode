@@ -1,3 +1,5 @@
+import { isNight } from './util.js'
+
 const DAY = '80010'
 const NIGHT = '410'
 const COOKIE_NAME = 'PREF'
@@ -24,12 +26,6 @@ chrome.alarms.create('setMode', {
 chrome.alarms.onAlarm.addListener(() => {
   updateMode(isNight() ? NIGHT : DAY)
 })
-
-function isNight() {
-  const date = new Date()
-  const hours = date.getHours()
-  return hours < 7 || hours >= 19
-}
 
 function updateMode(mode) {
   chrome.cookies.get({
