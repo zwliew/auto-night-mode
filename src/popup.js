@@ -4,11 +4,19 @@ import {
   minToMsec,
   getNightRange,
   minTilNextMode,
-  getNightDuration
+  getNightDuration,
+  updateMode
 } from "./util.js";
-import { ALARM } from "./constants.js";
+import { ALARM, NIGHT, DAY } from "./constants.js";
 
-function resetAlarm() {
+async function resetMode(modeEl) {
+  if (await isNight()) {
+    modeEl.textContent = "night";
+    updateMode(NIGHT);
+  } else {
+    modeEl.textContent = "day";
+    updateMode(DAY);
+  }
   chrome.alarms.clear(ALARM, async wasCleared => {
     if (wasCleared) {
       const delay = await minTilNextMode();
@@ -22,23 +30,22 @@ function resetAlarm() {
 }
 
 window.addEventListener("load", async () => {
-  const mode = document.getElementById("mode");
-  const start = document.getElementById("start");
-  const end = document.getElementById("end");
-
-  mode.textContent = (await isNight()) ? "night" : "day";
+  const modeEl = document.getElementById("mode");
+  const startEl = document.getElementById("start");
+  const endEl = document.getElementById("end");
+  modeEl.textContent = (await isNight()) ? "night" : "day";
   const range = await getNightRange();
-  start.valueAsNumber = minToMsec(range[0]);
-  end.valueAsNumber = minToMsec(range[1]);
+  startEl.valueAsNumber = minToMsec(range[0]);
+  endEl.valueAsNumber = minToMsec(range[1]);
 
-  start.addEventListener("input", () => {
+  startEl.addEventListener("input", () => {
     chrome.storage.sync.set({ start: msecToMin(start.valueAsNumber) }, () => {
-      resetAlarm();
+      resetMode(modeEl);
     });
   });
-  end.addEventListener("input", () => {
+  endEl.addEventListener("input", () => {
     chrome.storage.sync.set({ end: msecToMin(end.valueAsNumber) }, () => {
-      resetAlarm();
+      resetMode(modeEl);
     });
   });
 });
