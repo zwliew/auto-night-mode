@@ -5,7 +5,7 @@ export function timeInMin() {
 
 export async function isNight() {
   const min = timeInMin();
-  const { start, end } = await getNightRange();
+  const [start, end] = await getNightRange();
   if (start < end) {
     return min >= start && min < end;
   } else {

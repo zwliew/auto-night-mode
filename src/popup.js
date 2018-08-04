@@ -14,7 +14,7 @@ function resetAlarm() {
       const delay = await minTilNextMode();
       const period = await getNightDuration();
       chrome.alarms.create(ALARM, {
-        delayInMinutes: delta,
+        delayInMinutes: delay,
         periodInMinutes: period
       });
     }
