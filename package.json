@@ -1,0 +1,20 @@
+{
+  "name": "yt-auto-dark",
+  "version": "1.0.0",
+  "description": "Automatically turn on YouTube's Dark Mode at night.",
+  "main": "index.js",
+  "repository": "https://github.com/zwliew/yt-auto-dark",
+  "author": "Zhao Wei Liew <zhaoweiliew@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "husky": "^1.0.0-rc.13",
+    "prettier": "^1.14.0",
+    "pretty-quick": "^1.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}
