@@ -8,11 +8,7 @@
     "page": "src/background.html",
     "persistent": false
   },
-  "permissions": [
-    "cookies",
-    "alarms",
-    "*://*.youtube.com/*"
-  ],
+  "permissions": ["cookies", "alarms", "storage", "*://*.youtube.com/*"],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
