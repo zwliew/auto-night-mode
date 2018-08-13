@@ -12,7 +12,8 @@
     "cookies",
     "alarms",
     "storage",
-    "*://*.youtube.com/*"
+    "*://*.youtube.com/*",
+    "*://*.messages.android.com/*"
   ],
   "icons": {
     "16": "icons/icon16.png",
