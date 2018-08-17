@@ -51,19 +51,6 @@ export function minToMsec(min) {
   return min * 60 * 1000;
 }
 
-export function setCookie(value, domain, url, name, expirationDate) {
-  if (expirationDate === undefined) {
-    expirationDate = Date.now() + 63071623;
-  }
-  chrome.cookies.set({
-    url,
-    domain,
-    expirationDate,
-    name,
-    value
-  });
-}
-
 export function changeMode(isNight) {
   for (let name in updaters) {
     const updater = updaters[name];
