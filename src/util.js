@@ -1,3 +1,5 @@
+import updaters from "./updaters/index.js";
+
 export function timeInMin() {
   const date = new Date();
   return date.getHours() * 60 + date.getMinutes();
@@ -60,4 +62,11 @@ export function setCookie(value, domain, url, name, expirationDate) {
     name,
     value
   });
+}
+
+export function changeMode(isNight) {
+  for (let name in updaters) {
+    const updater = updaters[name];
+    updater.update(isNight ? updater.NIGHT : updater.DAY);
+  }
 }

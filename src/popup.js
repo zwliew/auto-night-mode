@@ -4,23 +4,18 @@ import {
   minToMsec,
   getNightRange,
   minTilNextMode,
-  getNightDuration
+  getNightDuration,
+  changeMode
 } from "./util.js";
 import { ALARM } from "./constants.js";
 
 async function resetMode(modeEl) {
   if (await isNight()) {
     modeEl.textContent = "night";
-    for (let name in updaters) {
-      const updater = updaters[name];
-      updater.update(updater.NIGHT);
-    }
+    changeMode(true);
   } else {
     modeEl.textContent = "day";
-    for (let name in updaters) {
-      const updater = updaters[name];
-      updater.update(updater.DAY);
-    }
+    changeMode(false);
   }
   chrome.alarms.clear(ALARM, async wasCleared => {
     if (wasCleared) {
